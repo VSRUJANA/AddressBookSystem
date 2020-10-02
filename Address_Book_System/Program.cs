@@ -12,7 +12,7 @@ namespace Address_Book_System
             var AB = new AddressBook();
             while (var)
             {
-                Console.WriteLine("Enter your choice :\n1.Add Contact\n2.Print Address Book\n3.Exit");
+                Console.WriteLine("Enter your choice :\n1.Add Contact\n2.Edit contact\n3.Print Address Book\n4.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -23,6 +23,19 @@ namespace Address_Book_System
                         AB.AddContact(details);
                         break;
                     case 2:
+                        Console.WriteLine("Enter Name to Edit: ");
+                        string name = Console.ReadLine();
+                        Contact find = AddressBook.FindContact(name);
+                        if (find == null)
+                        {
+                            Console.WriteLine("No Record found for {0}", name);
+                        }
+                        else
+                        {
+                            AddressBook.EditContact(find);
+                        }
+                        break;
+                    case 3:
                         AddressBook.PrintContact();
                         break;
                     default:

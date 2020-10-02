@@ -34,13 +34,65 @@ namespace Address_Book_System
                     Console.WriteLine("Address   : " + person.address + ", " + person.city + ", " + person.state + "-" + person.zipCode);
                     Console.WriteLine("Phone No. : " + person.phoneNumber);
                     Console.WriteLine("Email id  : " + person.email);
-                    Console.WriteLine("-------------------------------------------------------------");
+                    Console.WriteLine("------------------------------------------------------");
                 }
             }
             else
             {
                 Console.WriteLine("There are no contacts in the address book!");
             }
+        }
+        public static Contact FindContact(string name)
+        {
+            Contact contact = contactList.Find((person) => person.firstName.ToUpper() == name.ToUpper());
+            return contact;
+        }
+        public static Contact EditContact(Contact edit)
+        {
+            Console.WriteLine("Enter your choice : \n1. Edit all\t  2.Edit address\t  3.Edit Phone no.\t  4.Edit Email id\t  5.End editing");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
+            {
+                case 1:
+                    Console.WriteLine("Enter new details separated by comma in this format - Address,City,State,ZipCode,Phone Number,Email Id");
+                    string[] newDetails;
+                    newDetails = Console.ReadLine().Split(",");
+                    edit.address = newDetails[0];
+                    edit.city = newDetails[1];
+                    edit.state = newDetails[2];
+                    edit.zipCode = newDetails[3];
+                    edit.phoneNumber = newDetails[4];
+                    edit.email = newDetails[5];
+                    Console.WriteLine("Details updated for {0}", edit.firstName);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter new address in this format - Address,City,State,ZipCode");
+                    string[] newAddress;
+                    newAddress = Console.ReadLine().Split(",");
+                    edit.address = newAddress[0];
+                    edit.city = newAddress[1];
+                    edit.state = newAddress[2];
+                    edit.zipCode = newAddress[3];
+                    Console.WriteLine("Address updated for {0}", edit.firstName);
+                    break;
+
+
+                case 3:
+                    Console.WriteLine("Enter new Phone number");
+                    string newPhoneNumber = Console.ReadLine();
+                    edit.phoneNumber = newPhoneNumber;
+                    Console.WriteLine("Phone Number updated for {0}", edit.firstName);
+                    break;
+                case 4:
+                    Console.WriteLine("Enter new Email id");
+                    string newEmailID = Console.ReadLine();
+                    edit.email = newEmailID;
+                    Console.WriteLine("Email ID updated for {0}", edit.firstName);
+                    break;
+                default:
+                    break;
+            }
+            return edit;
         }
     }
 }
