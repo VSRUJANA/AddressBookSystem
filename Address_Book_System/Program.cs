@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Address_Book_System
 {
@@ -7,6 +8,8 @@ namespace Address_Book_System
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book Program!");
+            Console.WriteLine("Created Contact in Address Book...");
         }
     }
 }
+
