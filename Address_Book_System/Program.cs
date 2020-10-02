@@ -25,21 +25,21 @@ namespace Address_Book_System
                     case 2:
                         Console.WriteLine("Enter Name to Edit: ");
                         string name = Console.ReadLine();
-                        Contact find = AddressBook.FindContact(name);
-                        if (find == null)
+                        if (AddressBook.contactDict.ContainsKey(name))
                         {
-                            Console.WriteLine("No Record found for {0}", name);
+                            Contact find = AddressBook.FindContact(name);
+                            AddressBook.EditContact(find);
                         }
                         else
                         {
-                            AddressBook.EditContact(find);
+                            Console.WriteLine("No Record found for {0}", name);
                         }
                         break;
                     case 3:
                         AddressBook.PrintContact();
                         break;
                     case 4:
-                        if (AddressBook.contactList.Count != 0)
+                        if (AddressBook.contactDict.Count != 0)
                         {
                             Console.WriteLine("Enter first Name to Delete: ");
                             string delete = Console.ReadLine();

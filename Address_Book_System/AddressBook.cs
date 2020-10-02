@@ -6,28 +6,29 @@ namespace Address_Book_System
 {
     public class AddressBook
     {
-        public static List<Contact> contactList;
+        public static Dictionary<string, Contact> contactDict;
         public AddressBook()
         {
-            contactList = new List<Contact>();
+            contactDict = new Dictionary<string, Contact>(StringComparer.InvariantCultureIgnoreCase);
         }
 
         //Function to add contact to Address book
         public void AddContact(string[] d)
         {
             Contact entry = new Contact(d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7]);
-            contactList.Add(entry);
+            contactDict.Add(d[0], entry);
             Console.WriteLine("Contact added successfully");
         }
 
         //Function to print contacts in Address book
         public static void PrintContact()
         {
-            if (AddressBook.contactList.Count != 0)
+            if (AddressBook.contactDict.Count != 0)
             {
                 int count = 0;
-                foreach (Contact person in contactList)
+                foreach (KeyValuePair<string, Contact> item in contactDict)
                 {
+                    Contact person = item.Value;
                     count += 1;
                     Console.WriteLine("Contact- " + count);
                     Console.WriteLine("Name      : " + person.firstName + " " + person.lastName);
@@ -42,11 +43,16 @@ namespace Address_Book_System
                 Console.WriteLine("There are no contacts in the address book!");
             }
         }
+
+        //Function to check whether contact is present in the Address book or not
         public static Contact FindContact(string name)
         {
-            Contact contact = contactList.Find((person) => person.firstName.ToUpper() == name.ToUpper());
+            Contact contact = contactDict[name];
             return contact;
+
         }
+
+        //Function to Edit contact in the address book
         public static Contact EditContact(Contact edit)
         {
             Console.WriteLine("Enter your choice : \n1. Edit all\t  2.Edit address\t  3.Edit Phone no.\t  4.Edit Email id\t  5.End editing");
@@ -92,20 +98,19 @@ namespace Address_Book_System
             }
             return edit;
         }
+
         //Function to delete a contact from address book
         public static void DeleteContact(string name)
         {
-            Contact find = AddressBook.FindContact(name);
-            if (find == null)
+            if (contactDict.ContainsKey(name))
             {
-                Console.WriteLine("No Record found for {0} in the address book", name);
+                contactDict.Remove(name);
+                Console.WriteLine("Contact Deleted successfully!");
             }
             else
             {
-                contactList.Remove(find);
-                Console.WriteLine("Contact Deleted successfully!");
+                Console.WriteLine("No Record found for {0}", name);
             }
-
         }
     }
 }
