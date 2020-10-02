@@ -66,7 +66,7 @@ namespace Address_Book_System
                     Console.WriteLine("Details updated for {0}", edit.firstName);
                     break;
                 case 2:
-                    Console.WriteLine("Enter new address in this format - Address,City,State,ZipCode");
+                    Console.WriteLine("Enter new address in this format - Address,City,State,ZipCode ");
                     string[] newAddress;
                     newAddress = Console.ReadLine().Split(",");
                     edit.address = newAddress[0];
