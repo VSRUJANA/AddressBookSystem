@@ -50,7 +50,6 @@ namespace Address_Book_System
                             Console.WriteLine("There are no contacts in the address book to delete!");
                         }
                         break;
-
                     default:
                         var = false;
                         Console.WriteLine("press any key to exit...");

@@ -16,8 +16,16 @@ namespace Address_Book_System
         public void AddContact(string[] d)
         {
             Contact entry = new Contact(d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7]);
-            contactDict.Add(d[0], entry);
-            Console.WriteLine("Contact added successfully");
+            if (contactDict.ContainsKey(d[0]))
+            {
+                //throw new ArgumentException($"An item with the same key ({d[0]}) has already been added.");
+                Console.WriteLine("Exception : Contact with same name has already been added!");
+            }
+            else
+            {
+                contactDict.Add(d[0], entry);
+                Console.WriteLine("Contact added successfully");
+            }
         }
 
         //Function to print contacts in Address book
