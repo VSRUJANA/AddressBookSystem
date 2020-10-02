@@ -75,8 +75,6 @@ namespace Address_Book_System
                     edit.zipCode = newAddress[3];
                     Console.WriteLine("Address updated for {0}", edit.firstName);
                     break;
-
-
                 case 3:
                     Console.WriteLine("Enter new Phone number");
                     string newPhoneNumber = Console.ReadLine();
@@ -93,6 +91,21 @@ namespace Address_Book_System
                     break;
             }
             return edit;
+        }
+        //Function to delete a contact from address book
+        public static void DeleteContact(string name)
+        {
+            Contact find = AddressBook.FindContact(name);
+            if (find == null)
+            {
+                Console.WriteLine("No Record found for {0} in the address book", name);
+            }
+            else
+            {
+                contactList.Remove(find);
+                Console.WriteLine("Contact Deleted successfully!");
+            }
+
         }
     }
 }

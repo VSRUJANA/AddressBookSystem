@@ -12,7 +12,7 @@ namespace Address_Book_System
             var AB = new AddressBook();
             while (var)
             {
-                Console.WriteLine("Enter your choice :\n1.Add Contact\n2.Edit contact\n3.Print Address Book\n4.Exit");
+                Console.WriteLine("Enter your choice :\n1.Add Contact\n2.Edit contact\n3.Print Address Book\n4.Delete contact\n5.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -38,6 +38,19 @@ namespace Address_Book_System
                     case 3:
                         AddressBook.PrintContact();
                         break;
+                    case 4:
+                        if (AddressBook.contactList.Count != 0)
+                        {
+                            Console.WriteLine("Enter first Name to Delete: ");
+                            string delete = Console.ReadLine();
+                            AddressBook.DeleteContact(delete);
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no contacts in the address book to delete!");
+                        }
+                        break;
+
                     default:
                         var = false;
                         Console.WriteLine("press any key to exit....");
